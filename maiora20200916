@@ -69,6 +69,12 @@ visszaállás az utolsó commit állapotára
 
 
 
+feltöltés:
+git remote add origin https://github.com/Morpheus1981/Ender.git
+git branch -M master
+git push -u origin master
+
+
 
 /*Escape szekvenciák
 \n \t \r 
