@@ -1,0 +1,68 @@
+Bemutatkozás a Git számára
+
+Két móüdja a bemutatkozásnak:
+ha ezzel mutatkozunk be akkor csak a gépen lévő fileban lesz beleírva az adat.
+
+git config --global user.name "Danyi László"
+git config --global user.email "laszlo.danyi.81@gmail.com"
+
+
+
+
+
+előbb kell ennél a git init parancsot kiadni mivel az a git tárolóban menti az adatokat.
+
+git config --local user.name "Danyi László"
+git config --local user.email "laszlo.danyi.81@gmail.com"
+
+
+ezzel lehet mindent megnézni milyen adatot hová mentett.
+git config --list --show-origin
+
+
+
+ezzel lehet megnézni ki van bejelentkezve.
+git config --list
+
+---------------------------------------
+ls -a  // minden filet megmutat ami a mappában van a sima ls -el csak azokat lehet látni ami nincs letiltva.
+----------------------------------------
+
+
+geany index.php // enter és a terminálból megnyitja a filet hogy lehessen szerkeszteni.
+
+
+-----------------------------------------------------------------------
+A PHP vebszervere
+
+php -S localhost:8000 -t .
+
+ha így elindítom akkor a localhost:8000 kell bemásolni a böngészőben és így jelenik meg az a veboldal amit készítettünk.
+
+
+
+
+
+
+
+A várakozási jel lerövidítése itt nem látszik az útvonal így csak a dollár jel látszik és más nem.: (csak linuxon)
+
+export PS1="$ "
+
+
+
+
+a php webszerver windowson nem működik...
+ 
+
+w10 set path xampp php hogy lehet útvonalat beállítani a php -re.
+
+
+
+gitk
+
+
+visszaállás az utolsó commit állapotára
+- git reset --hard
+
+- git reset --hard (az első 4-5 szám az azonosítóból)
