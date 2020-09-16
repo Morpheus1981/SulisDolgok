@@ -66,3 +66,11 @@ visszaállás az utolsó commit állapotára
 - git reset --hard
 
 - git reset --hard (az első 4-5 szám az azonosítóból)
+
+
+
+
+/*Escape szekvenciák
+\n \t \r 
+Az n, t, r, 
+speciális */
