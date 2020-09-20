@@ -1,0 +1,445 @@
+a kódot : <?php -vel kezdjük és ?> vel zárjuk le.
+
+a kódban kommenteket // vagy /**/ jelöléssel látjuk el
+az első az egysoros a második a több soros.
+
+egy változó megadása mindig $ jellel kezdődik majd közveteln eze
+ket követően a változó neve szóköz nélkül.
+
+a képernyőre törétnő kiíratás : echo -val kezdődik
+
+A PHP változók szabályai:
+
+     Egy változó a $ jellel kezdődik, amelyet a változó neve követ
+     A változó nevének betűvel vagy aláhúzással kell kezdődnie
+     A változó neve nem kezdődhet számmal
+     A változó neve csak alfanumerikus karaktereket és aláhúzásokat tartalmazhat (A-z, 0–9 és _)
+     A változók nevei megkülönböztetik a kis- és nagybetűket (a $ age és $ AGE két különböző változó)
+
+A változókat kétféle módon adhatjuk meg , globálisan, helyileg, 
+
+Glogális:
+ <?php
+$x = 5; // global scope
+
+function myTest() {
+  // using x inside this function will generate an error
+  echo "<p>Variable x inside function is: $x</p>";
+}
+myTest();
+
+echo "<p>Variable x outside function is: $x</p>";
+?> 
+
+Lokális:
+ <?php
+function myTest() {
+  $x = 5; // local scope
+  echo "<p>Variable x inside function is: $x</p>";
+}
+myTest();
+
+// using x outside the function will generate an error
+echo "<p>Variable x outside function is: $x</p>";
+?> 
+
+A global kulcsszó használatával használhatóvá válik a globál változó
+a lokális function -ban.
+példa: 
+
+ <?php
+$x = 5;
+$y = 10;
+
+function myTest() {
+  global $x, $y;
+  $y = $x + $y;
+}
+
+myTest();
+echo $y; // outputs 15
+?> 
+
+Létezik egy $GLOBALS változó ami az öszes globális változót
+tartalmazza ami így is meghívható/ használható:
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$x = 5;
+$y = 10;
+
+function myTest() {
+  $GLOBALS['y'] = $GLOBALS['x'] + $GLOBALS['y'];
+} 
+
+myTest();
+echo $y;
+?>
+
+</body>
+</html>
+
+Statukus static kulcsszó, melyre akkor van szükség ha azt akarjuk, 
+hogy a változók ne törlődjenek. Ehhez amikor a változót 
+először dekraláljuk akkor a static kulcsszóval kell létrehozni.
+
+ <?php
+function myTest() {
+  static $x = 0;
+  echo $x;
+  $x++;
+}
+
+myTest();
+myTest();
+myTest();
+?> 
+
+Az echo kiíratással több lehetőség is van:
+lehet html kiíratást csinálni
+echo "<h2>A PHP is Fun !</h2>
+echo "Hello world!<br>";  //br a sortörést jelenti itt is
+echo " This ", "string ", "was", " made", "with multiple marameters.";
+ // több szóból is lehet mondatot alakítani így
+
+további kiíratás is lehetséges például:
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$txt1 = "Learn PHP";
+$txt2 = "W3Schools.com";
+$x = 5;
+$y = 4;
+
+echo "<h2>" . $txt1 . "</h2>";
+echo "Study PHP at " . $txt2 . "<br>";
+echo $x + $y;
+?>
+
+</body>
+</html>
+
+A print -el történő kiíratás szinte megegyezik a echo- val, de lassabb én gyorsabbnak mondanám :)
+Az echo nak nincs visszatérési értéke, a print -nek van ami :1.
+
+A php a következő adattípusokat támogatja:
+PHP supports the following data types:
+
+    String
+    Integer
+    Float (floating point numbers - also called double)
+    Boolean
+    Array
+    Object
+    NULL
+    Resource
+
+String megadásakor mindegy a dupla idézőjelet használjuk vagy a simát mind
+a kettővel lehet megadni.
+
+var_dump () függvény kiíró függvény, 
+intiger, float, array, php null, kiírásánál használatos az adatok megjelenítésére.
+
+
+php object:
+ <?php
+class Car {
+  function Car() {	 //létrehozom a class car osztályt
+    $this->model = "VW"; // létrehozom a car function-t
+  }				
+}
+
+// create an object
+$herbie = new Car();
+
+// show object properties
+echo $herbie->model;
+?> 
+
+
+-----------------------------------------
+strlen() - függvény visszatér a string hosszával
+
+ <?php
+echo strlen("Hello world!"); // outputs 12
+?> 
+
+---------------------------------------------
+str:word:count() - függvény visszatér a string szavak számával, de a felkiáltó jel pont nem tartozik bele.
+ <?php
+echo str_word_count("Hello world!"); // outputs 2
+?> 
+
+------------------------------------------------
+strrev()- függvény visszaadja a string-eket visszafelé
+
+ <?php
+echo strrev("Hello world!"); // outputs !dlrow olleH
+?> 
+
+
+-------------------------------------------------------
+strpos() -függvény megkeresi azt a helyiértéket a keresett szó közvetlen előtt és visszaadja annak értékét. 
+ 
+<?php
+echo strpos("Hello world!", "world"); // outputs 6
+?> 
+
+-------------------------------------------------------
+str_replace() függvény szöveg cseréje egy string-ben.
+
+ <?php
+echo str_replace("world", "Dolly", "Hello world!"); // outputs Hello Dolly!
+?> 
+
+első a cserélendő szó, második amire cserélni akarom, harmadik maga a szöveg amiban a cserélendő szót keresi meg a függvény és kicseréli amit megadtam.
+
+
+szöveg cserénél:
+$oldtxt = "Hello World!";
+$newtxt = str_replace ("World", "Dolly", $oldtxt)
+
+a kimeneten World Dolly mivel a megadott két első szó a szólánc és a harmadik az a szöveg megadása amit cserélni kell.
+
+
+---------------------------------------------------
+Intiger egész szám egy tizedes jegy nélküli egész szám.
+éréke
+
+ha egy számolásnál egy lebegőpontos szám akkor maga az eredmény ha egész szám is akkor is lebegőpontosan kerül tárolásra.
+
+Íme néhány szabály az egész számokra:
+
+     Egy egész számnak legalább egy számjegyből kell állnia
+     Egy egész számnak nem lehet tizedespontja
+     Egy egész szám lehet pozitív vagy negatív
+     Az egész számokat három formátumban lehet megadni: decimális (10-alapú), hexadecimális (16-alapú - 0x előtaggal) vagy oktális (8 alapú - 0 előtaggal)
+
+-----------------------------------------------------
+php ban ellenőrizni lehet többféle képpen hogy intiger e_:
+PHP has the following functions to check if the type of a variable is integer:
+
+    is_int()
+    is_integer() - alias of is_int()
+    is_long() - alias of is_int()
+
+For example: 
+
+<?php
+$x = 5985;
+var_dump(is_int($x));
+
+$x = 59.85;
+var_dump(is_int($x));
+?> 
+
+boolean értéket ad vissza igaz vagy hamis true /false
+
+-----------------------------------------------------------
+Floats lebegőpontos számok tizedesek
+2.0, 256.4, 10.358, 7.64E+5, 5.56E-5 are all floats. Maximum 14 számjegyig mehet.
+
+php ban ellenőrizni lehet többféle képpen hogy floats e__:
+PHP has the following functions to check if the type of a variable is float:
+
+    is_float()
+    is_double() - alias of is_float()
+
+for example:
+ <?php
+$x = 10.365;
+var_dump(is_float($x));
+?> 
+
+boolean értéket ad vissza igaz vagy hamis.
+...............................................................
+
+PHP Infinity érétk
+
+ellenőrizhető:
+PHP has the following functions to check if a numeric value is finite or infinite:
+
+    is_finite()
+    is_infinite()
+
+for example:
+ <?php
+$x = 1.9e411;
+var_dump($x);
+?> 
+
+visszatérési értékként finite or infinite lehet
+
+............................................................
+ PHP Numerical Strings ellenőrzése:
+
+ <?php
+$x = 5985;
+var_dump(is_numeric($x));
+
+$x = "5985";
+var_dump(is_numeric($x));
+
+$x = "59.85" + 100;
+var_dump(is_numeric($x));
+
+$x = "Hello";
+var_dump(is_numeric($x));
+?> 
+
+true or false éréket ad vissza.
+
+-----------------------------------------------------------------
+
+Csináljunk Strings ből és Floats ból Integers -t
+
+ <?php
+// Cast float to int
+$x = 23465.768;
+$int_cast = (int)$x;
+echo $int_cast;
+
+echo "<br>";
+
+// Cast string to int
+$x = "23465.768";
+$int_cast = (int)$x;
+echo $int_cast;
+?> 
+
+-----------------------------------------------------------------
+
+PHP pi() Function
+ 
+<?php
+echo(pi()); // returns 3.1415926535898
+?> 
+
+-------------------------------------------------------------------
+
+PHP min() adnd max() Functions
+
+for examples:
+
+<?php
+echo(min(0, 150, 30, 20, -8, -200));  // returns -200
+echo(max(0, 150, 30, 20, -8, -200));  // returns 150
+?> 
+
+----------------------------------------------------------------
+
+PHP abs() Function // egy szám abszolút érétkének visszaadása
+
+<?php
+echo(abs(-6.7));  // returns 6.7
+?> 
+
+----------------------------------------------------------------
+
+PHP sqrt() Function // egy szám négyzetgyöke
+
+for example:
+
+ <?php
+echo(sqrt(64));  // returns 8
+?> 
+
+
+.............................................................
+PHP round() Function   // egy szám kerekítésére használható
+
+for example:
+
+<?php
+echo(round(0.60));  // returns 1
+echo(round(0.49));  // returns 0
+?> 
+
+................................................................
+Random Numbers szám
+
+for example:
+
+<?php
+echo(rand());
+?> 
+
+meg lehet adni a minimum és maximum számot is a min és maximum szám is szerepelhet az eredményben.
+
+<?php
+echo(rand(10, 100));
+?>
+
+-----------------------------------------------------------------------
+ PHP Costants
+
+Syntax
+define (name, value, case-insensitive)
+
+Parameters:
+
+    name: Specifies the name of the constant
+    value: Specifies the value of the constant
+    case-insensitive: Specifies whether the constant name should be case-insensitive. Default is false
+
+kétféleképpen lehet sensitive és insensitive
+
+sensitive ha a beállítása a case-insensitive default azaz false
+
+for example:
+ <?php
+define("GREETING", "Welcome to W3Schools.com!");
+echo GREETING;
+?> 
+.-.-.-.-.-.--.-...............--.-.-..--.-.-..--.-.-..-.-
+Illetve ha megadunk értéket azaz true lesz így már nem számít neki a kis és nagybetű akár az egyik kicsi a másik nagy is lehet....
+
+for example:
+
+<?php
+define("GREETING", "Welcome to W3Schools.com!", true);
+echo greeting;
+?> 
+
+-----------------------------------------------------------
+
+PHP Constant Arrays
+a létrehozásához használjuk a define() function -t
+- fontos tudni, hogy a lista elemei 0- tól számozódnak
+for example: 
+
+<?php
+define("cars", [
+  "Alfa Romeo",
+  "BMW",
+  "Toyota"
+]);
+echo cars[0];
+?> 
+
+---------------------------------------------------------
+Ha a constants global -isan van megadva arra is egy példa ,itt is megfigyelhető hogy 
+ha a define csak két komponensből áll akkor a case sensitive default -on van így 
+érzékeny a kis és nagybetűkre, de ha megdnánk a harmadik komponensnek a true -t akkor már nem 
+lenne érzékeny.
+
+for example global constrants:
+
+<?php
+define("GREETING", "Welcome to W3Schools.com!");
+
+function myTest() {
+  echo GREETING;
+}
+ 
+myTest();
+?> 
+
+-----------------------------------------------------------
+PHP Operators --- eddig jutottam
+
+
